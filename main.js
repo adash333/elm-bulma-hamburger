@@ -5234,11 +5234,23 @@ var elm$html$Html$b = _VirtualDom_node('b');
 var elm$html$Html$div = _VirtualDom_node('div');
 var elm$html$Html$footer = _VirtualDom_node('footer');
 var elm$html$Html$h1 = _VirtualDom_node('h1');
+var elm$html$Html$h2 = _VirtualDom_node('h2');
 var elm$html$Html$img = _VirtualDom_node('img');
+var elm$html$Html$nav = _VirtualDom_node('nav');
 var elm$html$Html$p = _VirtualDom_node('p');
 var elm$html$Html$section = _VirtualDom_node('section');
+var elm$html$Html$span = _VirtualDom_node('span');
 var elm$html$Html$ul = _VirtualDom_node('ul');
+var elm$virtual_dom$VirtualDom$attribute = F2(
+	function (key, value) {
+		return A2(
+			_VirtualDom_attribute,
+			_VirtualDom_noOnOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
+	});
+var elm$html$Html$Attributes$attribute = elm$virtual_dom$VirtualDom$attribute;
 var elm$html$Html$Attributes$class = elm$html$Html$Attributes$stringProperty('className');
+var elm$html$Html$Attributes$id = elm$html$Html$Attributes$stringProperty('id');
 var elm$html$Html$Attributes$src = function (url) {
 	return A2(
 		elm$html$Html$Attributes$stringProperty,
@@ -5250,10 +5262,12 @@ var author$project$Main$view = function (model) {
 		body: _List_fromArray(
 			[
 				A2(
-				elm$html$Html$section,
+				elm$html$Html$nav,
 				_List_fromArray(
 					[
-						elm$html$Html$Attributes$class('hero is-primary')
+						A2(elm$html$Html$Attributes$attribute, 'aria-label', 'main navigation'),
+						elm$html$Html$Attributes$class('navbar is-white'),
+						A2(elm$html$Html$Attributes$attribute, 'role', 'navigation')
 					]),
 				_List_fromArray(
 					[
@@ -5261,7 +5275,7 @@ var author$project$Main$view = function (model) {
 						elm$html$Html$div,
 						_List_fromArray(
 							[
-								elm$html$Html$Attributes$class('hero-body')
+								elm$html$Html$Attributes$class('navbar-brand')
 							]),
 						_List_fromArray(
 							[
@@ -5269,32 +5283,185 @@ var author$project$Main$view = function (model) {
 								elm$html$Html$div,
 								_List_fromArray(
 									[
-										elm$html$Html$Attributes$class('container')
+										elm$html$Html$Attributes$class('navbar-item')
+									]),
+								_List_fromArray(
+									[
+										elm$html$Html$text('EBH')
+									])),
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('navbar-burger'),
+										A2(elm$html$Html$Attributes$attribute, 'data-target', 'navMenu')
+									]),
+								_List_fromArray(
+									[
+										A2(elm$html$Html$span, _List_Nil, _List_Nil),
+										A2(elm$html$Html$span, _List_Nil, _List_Nil),
+										A2(elm$html$Html$span, _List_Nil, _List_Nil)
+									]))
+							])),
+						A2(
+						elm$html$Html$div,
+						_List_fromArray(
+							[
+								elm$html$Html$Attributes$class('navbar-menu'),
+								elm$html$Html$Attributes$id('navMenu')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								elm$html$Html$div,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('navbar-end')
 									]),
 								_List_fromArray(
 									[
 										A2(
-										elm$html$Html$h1,
+										elm$html$Html$a,
 										_List_fromArray(
 											[
-												elm$html$Html$Attributes$class('title')
+												elm$html$Html$Attributes$class('navbar-item'),
+												elm$html$Html$Attributes$href('/')
 											]),
 										_List_fromArray(
 											[
-												A2(
-												elm$html$Html$a,
-												_List_fromArray(
-													[
-														elm$html$Html$Attributes$href('/')
-													]),
-												_List_fromArray(
-													[
-														elm$html$Html$text('Elm Bulma Hamburger')
-													]))
+												elm$html$Html$text('トップ')
+											])),
+										A2(
+										elm$html$Html$a,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('navbar-item'),
+												elm$html$Html$Attributes$href('/about')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('NBHとは？')
+											])),
+										A2(
+										elm$html$Html$a,
+										_List_fromArray(
+											[
+												elm$html$Html$Attributes$class('navbar-item'),
+												elm$html$Html$Attributes$href('/contact')
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text('お問い合わせ')
 											]))
 									]))
-							]))
+							])),
+						elm$html$Html$text('  ')
 					])),
+				function () {
+				var _n0 = model.url.path;
+				switch (_n0) {
+					case '/':
+						return A2(elm$html$Html$div, _List_Nil, _List_Nil);
+					case '/about':
+						return A2(
+							elm$html$Html$section,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('hero is-primary is-bold')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('hero-body')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('container')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$h1,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('title is-size-2')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('About')
+														])),
+													A2(
+													elm$html$Html$h2,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('subtitle is-size-4')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('EBHとは？')
+														]))
+												]))
+										]))
+								]));
+					case '/contact':
+						return A2(
+							elm$html$Html$section,
+							_List_fromArray(
+								[
+									elm$html$Html$Attributes$class('hero is-info is-bold')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									elm$html$Html$div,
+									_List_fromArray(
+										[
+											elm$html$Html$Attributes$class('hero-body')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											elm$html$Html$div,
+											_List_fromArray(
+												[
+													elm$html$Html$Attributes$class('container')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													elm$html$Html$h1,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('title is-size-2')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('Contact')
+														])),
+													A2(
+													elm$html$Html$h2,
+													_List_fromArray(
+														[
+															elm$html$Html$Attributes$class('subtitle is-size-4')
+														]),
+													_List_fromArray(
+														[
+															elm$html$Html$text('お問い合わせ')
+														]))
+												]))
+										]))
+								]));
+					default:
+						return A2(elm$html$Html$div, _List_Nil, _List_Nil);
+				}
+			}(),
 				A2(
 				elm$html$Html$section,
 				_List_fromArray(
@@ -5330,8 +5497,8 @@ var author$project$Main$view = function (model) {
 										author$project$Main$viewLink('/contact')
 									])),
 								function () {
-								var _n0 = model.url.path;
-								switch (_n0) {
+								var _n1 = model.url.path;
+								switch (_n1) {
 									case '/':
 										return A2(
 											elm$html$Html$img,
@@ -5387,7 +5554,7 @@ var author$project$Main$view = function (model) {
 										elm$html$Html$a,
 										_List_fromArray(
 											[
-												elm$html$Html$Attributes$href('http://i-doctor.sakura.ne.jp/font/?p=38672')
+												elm$html$Html$Attributes$href('http://i-doctor.sakura.ne.jp/font/?p=38815')
 											]),
 										_List_fromArray(
 											[
@@ -5397,7 +5564,7 @@ var author$project$Main$view = function (model) {
 							]))
 					]))
 			]),
-		title: 'URL Interceptor'
+		title: 'Elm Bulma Hamburger'
 	};
 };
 var elm$browser$Browser$application = _Browser_application;

@@ -84,17 +84,59 @@ update msg model =
 
 view : Model -> Browser.Document Msg
 view model =
-    { title = "URL Interceptor"
+    { title = "Elm Bulma Hamburger"
     , body =
-        [ section [ class "hero is-primary" ]
-            [ div [ class "hero-body" ]
-                [ div [ class "container" ]
-                    [ h1 [ class "title" ]
-                        [ a [ href "/" ] [ text "Elm Bulma Hamburger" ]
-                        ]
+        [ nav [ attribute "aria-label" "main navigation", class "navbar is-white", attribute "role" "navigation" ]
+            [ div [ class "navbar-brand" ]
+                [ div [ class "navbar-item" ]
+                    [ text "EBH" ]
+                , div [ class "navbar-burger", attribute "data-target" "navMenu" ]
+                    [ span []
+                        []
+                    , span []
+                        []
+                    , span []
+                        []
                     ]
                 ]
+            , div [ class "navbar-menu", id "navMenu" ]
+                [ div [ class "navbar-end" ]
+                    [ a [ class "navbar-item", href "/" ]
+                        [ text "トップ" ]
+                    , a [ class "navbar-item", href "/about" ]
+                        [ text "NBHとは？" ]
+                    , a [ class "navbar-item", href "/contact" ]
+                        [ text "お問い合わせ" ]
+                    ]
+                ]
+            , text "  "
             ]
+        , case model.url.path of
+            "/" ->
+                div [] []
+
+            "/about" ->
+                section [ class "hero is-primary is-bold" ]
+                    [ div [ class "hero-body" ]
+                        [ div [ class "container" ]
+                            [ h1 [ class "title is-size-2" ] [ text "About" ]
+                            , h2 [ class "subtitle is-size-4" ] [ text "EBHとは？" ]
+                            ]
+                        ]
+                    ]
+
+            "/contact" ->
+                section [ class "hero is-info is-bold" ]
+                    [ div [ class "hero-body" ]
+                        [ div [ class "container" ]
+                            [ h1 [ class "title is-size-2" ] [ text "Contact" ]
+                            , h2 [ class "subtitle is-size-4" ] [ text "お問い合わせ" ]
+                            ]
+                        ]
+                    ]
+
+            _ ->
+                div [] []
         , section [ class "section" ]
             [ div [ class "container" ]
                 [ text "The current URL is: "
@@ -121,7 +163,7 @@ view model =
         , footer [ class "footer" ]
             [ div [ class "content has-text-centered" ]
                 [ p []
-                    [ a [ href "http://i-doctor.sakura.ne.jp/font/?p=38672" ] [ text "WordPressでフリーオリジナルフォント2" ]
+                    [ a [ href "http://i-doctor.sakura.ne.jp/font/?p=38815" ] [ text "WordPressでフリーオリジナルフォント2" ]
                     ]
                 ]
             ]
