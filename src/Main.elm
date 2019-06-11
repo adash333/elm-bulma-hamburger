@@ -4,6 +4,7 @@ import Browser
 import Browser.Navigation as Nav
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 import Url
 
 
@@ -39,12 +40,22 @@ subscriptions _ =
 type alias Model =
     { key : Nav.Key
     , url : Url.Url
+    , isMenuActive : Bool
     }
 
 
 init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
 init flags url key =
-    ( Model key url, Cmd.none )
+    let
+        initialModel =
+            Model
+                key
+                url
+                False
+    in
+    ( initialModel
+    , Cmd.none
+    )
 
 
 
@@ -54,6 +65,8 @@ init flags url key =
 type Msg
     = LinkClicked Browser.UrlRequest
     | UrlChanged Url.Url
+    | ToggleMenu
+    | ResetMenu
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -77,6 +90,22 @@ update msg model =
             , Cmd.none
             )
 
+        ToggleMenu ->
+            if model.isMenuActive then
+                ( { model | isMenuActive = False }
+                , Cmd.none
+                )
+
+            else
+                ( { model | isMenuActive = True }
+                , Cmd.none
+                )
+
+        ResetMenu ->
+            ( { model | isMenuActive = False }
+            , Cmd.none
+            )
+
 
 
 -- VIEW
@@ -90,7 +119,16 @@ view model =
             [ div [ class "navbar-brand" ]
                 [ div [ class "navbar-item" ]
                     [ text "EBH" ]
-                , div [ class "navbar-burger", attribute "data-target" "navMenu" ]
+                , div
+                    [ class "navbar-burger"
+                    , attribute "data-target" "navMenu"
+                    , onClick ToggleMenu
+                    , if model.isMenuActive then
+                        class "is-active"
+
+                      else
+                        class ""
+                    ]
                     [ span []
                         []
                     , span []
@@ -99,13 +137,21 @@ view model =
                         []
                     ]
                 ]
-            , div [ class "navbar-menu", id "navMenu" ]
+            , div
+                [ class "navbar-menu"
+                , id "navMenu"
+                , if model.isMenuActive then
+                    class "is-active"
+
+                  else
+                    class ""
+                ]
                 [ div [ class "navbar-end" ]
-                    [ a [ class "navbar-item", href "/" ]
+                    [ a [ class "navbar-item", href "/", onClick ResetMenu ]
                         [ text "トップ" ]
-                    , a [ class "navbar-item", href "/about" ]
+                    , a [ class "navbar-item", href "/about", onClick ResetMenu ]
                         [ text "NBHとは？" ]
-                    , a [ class "navbar-item", href "/contact" ]
+                    , a [ class "navbar-item", href "/contact", onClick ResetMenu ]
                         [ text "お問い合わせ" ]
                     ]
                 ]
